@@ -20,102 +20,96 @@ class dbConnection {
         // Close file db connection
         $this->file_db = null;
     }
-    
-    public function getUsers(){
-        $this->openConnection();
-        
-        $result = $this->file_db->query('SELECT * FROM User');
 
-        $this->closeConnection();
-        
-        return $result;
+    private function getSQLRequest($strSQLRequest){
+        try {
+            $this->openConnection();
+
+            $query = $this->file_db->prepare($strSQLRequest);
+            $query->execute();
+            $response = $query->fetch();
+
+            $query->closeCursor();
+            $this->closeConnection();
+
+            return ($response);
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    private function getSQLRequestAll($strSQLRequest){
+        try {
+            $this->openConnection();
+
+            $query = $this->file_db->prepare($strSQLRequest);
+            $query->execute();
+            $response = $query->fetchAll();
+
+            $query->closeCursor();
+            $this->closeConnection();
+
+            return ($response);
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    private function executeSQLRequest($strSQLRequest){
+        try {
+            $this->openConnection();
+
+            $query = $this->file_db->prepare($strSQLRequest);
+            $query->execute();
+
+            $query->closeCursor();
+            $this->closeConnection();
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getUsers(){
+        return $this->getSQLRequestAll('SELECT * FROM User');
     }
 
     public function getUser($username){
-        $this->openConnection();
-
-        $result = $this->file_db->query("SELECT * FROM User WHERE username = '$username'");
-
-        $this->closeConnection();
-
-        return $result;
+        return $this->getSQLRequest("SELECT * FROM User WHERE username = '$username'");
     }
 
     public function getUsernames($username){
-        $this->openConnection();
-
-        $result = $this->file_db->query("SELECT username FROM User WHERE username != '$username'");
-
-        $this->closeConnection();
-
-        return $result;
+        return $this->getSQLRequestAll("SELECT username FROM User WHERE username != '$username'");
     }
 
     public function addUser($username, $password, $validity, $role){
-        $this->openConnection();
-
-        $this->file_db->exec("INSERT INTO User (username, password, validity, role) VALUES ('$username', '$password', '$validity', '$role')");
-
-        $this->closeConnection();
+        $this->executeSQLRequest("INSERT INTO User (username, password, validity, role) VALUES ('$username', '$password', '$validity', '$role')");
     }
 
     public function deleteUser($username){
-        $this->openConnection();
-
-        $this->file_db->exec("DELETE FROM User WHERE username = '$username'");
-
-        $this->closeConnection();
+        $this->executeSQLRequest("DELETE FROM User WHERE username = '$username'");
     }
 
     public function editUser($username, $password, $validity, $role){
-        $this->openConnection();
-
-        $this->file_db->exec("UPDATE User SET password = '$password', validity = '$validity', role = '$role' WHERE username = '$username'");
-
-        $this->closeConnection();
+        $this->executeSQLRequest("UPDATE User SET password = '$password', validity = '$validity', role = '$role' WHERE username = '$username'");
     }
     
     public function editPassword($username, $password){
-        $this->openConnection();
-
-        $this->file_db->exec("UPDATE User SET password = '$password' WHERE username = '$username'");
-
-        $this->closeConnection();
+       $this->executeSQLRequest("UPDATE User SET password = '$password' WHERE username = '$username'");
     }
 
     public function newMessage($username, $date, $to, $subject, $message){
-        $this->openConnection();
-
-        $this->file_db->exec("INSERT INTO Message ('date', 'from', 'to', 'subject', 'message') VALUES ('$date', '$username', '$to', '$subject', '$message')");
-
-        $this->closeConnection();
+        $this->executeSQLRequest("INSERT INTO Message ('date', 'from', 'to', 'subject', 'message') VALUES ('$date', '$username', '$to', '$subject', '$message')");
     }
 
     public function getMessages(){
-        $this->openConnection();
-
-        $result = $this->file_db->query("SELECT * FROM Message ORDER BY date DESC");
-
-        $this->closeConnection();
-
-        return $result;
+        return $this->getSQLRequestAll("SELECT * FROM Message ORDER BY date DESC");
     }
 
     public function getMessage($id){
-        $this->openConnection();
-
-        $result = $this->file_db->query("SELECT * FROM Message WHERE id = '$id'");
-
-        $this->closeConnection();
-
-        return $result;
+        return $this->getSQLRequest("SELECT * FROM Message WHERE id = '$id'");
     }
 
     public function deleteMessage($id) {
-        $this->openConnection();
-
-        $this->file_db->exec("DELETE FROM Message WHERE id = '$id'");
-
-        $this->closeConnection();
+        $this->executeSQLRequest("DELETE FROM Message WHERE id = '$id'");
     }
 }

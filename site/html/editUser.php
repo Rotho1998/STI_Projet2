@@ -7,12 +7,6 @@
     $username = $_POST['userToEdit'];
 
     $user = $dbConnection->getUser($username);
-
-    $usr = "";
-    foreach ($user as $u){
-        $usr = $u;
-        break;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +25,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-8">Password<span style="color: red">*</span></label>
                     <div class="col-lg-12">
-                        <input type="password" class="form-control form-connexion-input" id="inputPassword" name="inputPassword" placeholder="Password" value="<?php echo $usr['password'] ?>">
+                        <input type="password" class="form-control form-connexion-input" id="inputPassword" name="inputPassword" placeholder="Password" value="<?php echo $user['password'] ?>">
                     </div>
                 </div>
 
@@ -39,8 +33,8 @@
                     <label for="inputValidity" class="col-lg-8">Validity<span style="color: red">*</span></label>
                     <div class="col-lg-12">
                         <select class="form-control" id="inputValidity" name="inputValidity">
-                            <option <?php if($usr['validity'] == 1) { ?> selected <?php } ?> value="1">Yes</option>
-                            <option <?php if($usr['validity'] == 0) { ?> selected <?php } ?> value="0">No</option>
+                            <option <?php if($user['validity'] == 1) { ?> selected <?php } ?> value="1">Yes</option>
+                            <option <?php if($user['validity'] == 0) { ?> selected <?php } ?> value="0">No</option>
                         </select>
                     </div>
                 </div>
@@ -49,13 +43,13 @@
                     <label for="inputRole" class="col-lg-8">Role<span style="color: red">*</span></label>
                     <div class="col-lg-12">
                         <select class="form-control" id="inputRole" name="inputRole">
-                            <option <?php if($usr['role'] == 0) { ?> selected <?php } ?> value="0">Standard</option>
-                            <option <?php if($usr['role'] == 1) { ?> selected <?php } ?> value="1">Administrator</option>
+                            <option <?php if($user['role'] == 0) { ?> selected <?php } ?> value="0">Standard</option>
+                            <option <?php if($user['role'] == 1) { ?> selected <?php } ?> value="1">Administrator</option>
                         </select>
                     </div>
                 </div>
 
-                <input type="hidden" id="inputUsername" name="inputUsername" value="<?php echo $usr['username'] ?>"/>
+                <input type="hidden" id="inputUsername" name="inputUsername" value="<?php echo $user['username'] ?>"/>
 
                 <div class="form-group pull-right">
                     <div class="col-lg-8">

@@ -14,17 +14,16 @@ $username = $_POST['inputLogin'];
 $password = $_POST['inputPassword'];
 
 // Récupération des utilisateurs dans la bdd
-$users = $dbConnection->getUsers();
+$user = $dbConnection->getUser($username);
 
 // Test des informations
 $rightInfos = false;
 $isAdmin = false;
-foreach($users as $u){
-    if ($u['username'] == $username && $u['password'] == $password && $u['validity'] == 1){
-        $rightInfos = true;
-        if($u['role'] == 1){
-            $isAdmin = true;
-        }
+
+if ($user['username'] == $username && $user['password'] == $password && $user['validity'] == 1){
+    $rightInfos = true;
+    if($user['role'] == 1){
+        $isAdmin = true;
     }
 }
 
