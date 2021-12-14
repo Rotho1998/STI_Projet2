@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e415e919-df4f-4628-b726-50096cdb9f05" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addUserTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/addUserTreat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/answerMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/answerMessage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/dbConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/dbConnection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editPasswordTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/editPasswordTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/addUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/editPassword.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/editUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/editUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editUserTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/editUserTreat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/header.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/header.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginTreat.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -95,7 +92,7 @@
       <workItem from="1639063719182" duration="765000" />
       <workItem from="1639132397919" duration="599000" />
       <workItem from="1639159543135" duration="1142000" />
-      <workItem from="1639487563527" duration="8061000" />
+      <workItem from="1639487563527" duration="13244000" />
     </task>
     <servers />
   </component>

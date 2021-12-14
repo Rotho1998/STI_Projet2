@@ -22,3 +22,6 @@
 
 1. Amélioration requêtes avec la BDD
 2. Hashage du mdp + contraintes sur le mdp
+3. Vérifier entrées formulaires
+4. Vérifier autorisations d'accès
+5. Token de suivi

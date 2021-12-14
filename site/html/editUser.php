@@ -20,8 +20,11 @@
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-6">
+            <div class="alert alert-dismissible alert-danger" id="alert" style="display: none;">
+                <a id="alertMessage"></a>
+            </div>
             <!-- Formulaire d'édition d'utilisateur' -->
-            <form action="./editUserTreat.php" method="post">
+            <form action="./editUserTreat.php" method="post" onsubmit="return verifyPassword(true)">
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-8">Password (let empty to not edit the password)<span style="color: red">*</span></label>
                     <div class="col-lg-12">
@@ -62,6 +65,7 @@
 </div>
 <?php include_once('./include/footer.inc.php'); ?>
 </body>
+<script src="./js/checkEntries.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 </html>
