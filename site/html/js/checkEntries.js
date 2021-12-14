@@ -1,5 +1,7 @@
 function verifyPassword (isEditpassword = false) {
     const pwd = document.getElementById("inputPassword").value;
+    // Teste si la vérification du mot de passe provient du formulaire de modification d'un utilisateur pour l'admin,
+    // dans quel cas si le champ est vide on ne fait pas la vérification
     if(isEditpassword && !pwd.localeCompare("")) {
         return true;
     }
