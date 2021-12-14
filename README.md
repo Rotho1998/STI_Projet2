@@ -15,3 +15,10 @@
 ## Identification des contre-mesures
 
 ## Conclusion
+
+
+
+## Ce que j'ai fait :
+
+1. Amélioration requêtes avec la BDD
+2. Hashage du mdp + contraintes sur le mdp

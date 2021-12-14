@@ -5,12 +5,6 @@
     $dbConnection = new dbConnection();
 
     $message = $dbConnection->getMessage($_POST['idMessage']);
-
-    $msg = "";
-    foreach ($message as $m){
-        $msg = $m;
-        break;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +23,14 @@
                 <div class="form-group">
                     <label for="inputTo" class="col-lg-8">To<span style="color: red">*</span></label>
                     <div class="col-lg-12">
-                        <input type="text" readonly class="form-control form-connexion-input" id="inputTo" name="inputTo" placeholder="To" value="<?php echo $msg['from'] ?>">
+                        <input type="text" readonly class="form-control form-connexion-input" id="inputTo" name="inputTo" placeholder="To" value="<?php echo $message['from'] ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputSubject" class="col-lg-8">Subject<span style="color: red">*</span></label>
                     <div class="col-lg-12">
-                        <input type="text" readonly class="form-control form-connexion-input" id="inputSubject" name="inputSubject" placeholder="Subject" value="RE: <?php echo $msg['subject'] ?>">
+                        <input type="text" readonly class="form-control form-connexion-input" id="inputSubject" name="inputSubject" placeholder="Subject" value="RE: <?php echo $message['subject'] ?>">
                     </div>
                 </div>
 

@@ -15,6 +15,8 @@ $password = $_POST['inputPassword'];
 $validity = $_POST['inputValidity'];
 $role = $_POST['inputRole'];
 
+$password = password_hash($password, PASSWORD_BCRYPT);
+
 $dbConnection->addUser($username, $password, $validity, $role);
 
 header('Location:./index.php');

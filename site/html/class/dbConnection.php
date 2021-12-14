@@ -92,6 +92,10 @@ class dbConnection {
     public function editUser($username, $password, $validity, $role){
         $this->executeSQLRequest("UPDATE User SET password = '$password', validity = '$validity', role = '$role' WHERE username = '$username'");
     }
+
+    public function editUserWithoutPassword($username, $validity, $role){
+        $this->executeSQLRequest("UPDATE User SET validity = '$validity', role = '$role' WHERE username = '$username'");
+    }
     
     public function editPassword($username, $password){
        $this->executeSQLRequest("UPDATE User SET password = '$password' WHERE username = '$username'");

@@ -14,6 +14,8 @@ if($pwd == $pwdRepeat){
     // Appel de la classe de connexion
     require ('class/dbConnection.php');
 
+    $pwd = password_hash($pwd, PASSWORD_BCRYPT);
+
     $dbConnection = new dbConnection();
 
     $dbConnection->editPassword($_SESSION['Login'], $pwd);

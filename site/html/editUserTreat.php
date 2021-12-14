@@ -15,7 +15,13 @@ $pwd = $_POST['inputPassword'];
 $validity = $_POST['inputValidity'];
 $role = $_POST['inputRole'];
 
-$dbConnection->editUser($username, $pwd, $validity, $role);
+// Ne pas modifier le mot de passe
+if($pwd == ""){
+    $dbConnection->editUserWithoutPassword($username, $validity, $role);
+} else {
+    $pwd = password_hash($pwd, PASSWORD_BCRYPT);
+    $dbConnection->editUser($username, $pwd, $validity, $role);
+}
 
 header('Location:./users.php');
 

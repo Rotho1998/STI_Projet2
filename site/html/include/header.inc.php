@@ -1,7 +1,7 @@
 <!-- header qui sera inclu dans chaque page -->
 <head>
     <meta charset="utf-8">
-    <title>STI - Projet 1</title>
+    <title>STI - Projet 2</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

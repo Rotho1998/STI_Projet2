@@ -16,16 +16,16 @@
 <?php include_once('./include/navbar.inc.php'); ?>
 <div class="container">
     <div class="jumbotron text-center">
-        <h1>Edit user <?php echo $usr['username'] ?></h1>
+        <h1>Edit user <?php echo $user['username'] ?></h1>
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-6">
             <!-- Formulaire d'édition d'utilisateur' -->
             <form action="./editUserTreat.php" method="post">
                 <div class="form-group">
-                    <label for="inputPassword" class="col-lg-8">Password<span style="color: red">*</span></label>
+                    <label for="inputPassword" class="col-lg-8">Password (let empty to not edit the password)<span style="color: red">*</span></label>
                     <div class="col-lg-12">
-                        <input type="password" class="form-control form-connexion-input" id="inputPassword" name="inputPassword" placeholder="Password" value="<?php echo $user['password'] ?>">
+                        <input type="password" class="form-control form-connexion-input" id="inputPassword" name="inputPassword" placeholder="Password">
                     </div>
                 </div>
 

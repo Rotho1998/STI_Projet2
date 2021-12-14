@@ -20,7 +20,7 @@ $user = $dbConnection->getUser($username);
 $rightInfos = false;
 $isAdmin = false;
 
-if ($user['username'] == $username && $user['password'] == $password && $user['validity'] == 1){
+if ($user['username'] == $username && password_verify($password, $user['password']) && $user['validity'] == 1){
     $rightInfos = true;
     if($user['role'] == 1){
         $isAdmin = true;
