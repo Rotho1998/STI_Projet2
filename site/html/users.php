@@ -18,6 +18,12 @@
     </div>
     <div class="row justify-content-md-center">
         <div class="col-lg-10">
+            <div class="alert alert-dismissible alert-danger" id="alert" style="<?php if(isset($_SESSION['error'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
+                <a id="alertMessage"><?php if(isset($_SESSION['error'])) { echo $_SESSION['error']; unset($_SESSION['error']); } ?></a>
+            </div>
+            <div class="alert alert-dismissible alert-success" id="alert" style="<?php if(isset($_SESSION['success'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
+                <a id="alertMessage"><?php if(isset($_SESSION['success'])) { echo $_SESSION['success']; unset($_SESSION['success']); } ?></a>
+            </div>
             <div class="form-group">
                 <table class="table table-striped">
                     <tr>

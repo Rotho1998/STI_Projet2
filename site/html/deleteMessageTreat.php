@@ -1,22 +1,34 @@
-<html>
-<head></head>
-<body>
-
 <?php
 
-// Appel de la classe de connexion
-require ('class/dbConnection.php');
+require('class/redirect.php');
 
-$dbConnection = new dbConnection();
+// Définition du nom des inputs reçues
+const IN_ID = 'idMessage';
 
-// Récupération des identifiants entrés
-$id = $_POST['idMessage'];
+const VIEW = './index.php';
 
-$dbConnection->deleteMessage($id);
+// Vérification de l'entrée
+if(isset($_POST[IN_ID]) && $_POST[IN_ID] != "") {
+    // Appel de la classe de connexion
+    require ('class/dbConnection.php');
 
-header('Location:./index.php');
+    $dbConnection = new dbConnection();
 
-?>
+    // Récupération des identifiants entrés
+    $id = $_POST[IN_ID];
 
-</body>
-</html>
+    session_start();
+
+    $username = $_SESSION['Login'];
+    $invalidID = $dbConnection->deleteMessage($id, $username);
+    if($invalidID){
+        // Redirection vers la page précédente avec un message d'erreur
+        redirectError("Something went wrong, please try again", VIEW);
+    }
+
+    // Tout a bien fonctionné
+    redirectSuccess("The message has been deleted", VIEW);
+} else {
+    // Redirection vers la page précédente avec un message d'erreur
+    redirectError("An error occured, please try again", VIEW);
+}

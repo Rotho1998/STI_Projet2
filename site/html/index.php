@@ -50,6 +50,12 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col-lg-10">
+                <div class="alert alert-dismissible alert-danger" id="alert" style="<?php if(isset($_SESSION['error'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
+                    <a id="alertMessage"><?php if(isset($_SESSION['error'])) { echo $_SESSION['error']; unset($_SESSION['error']); } ?></a>
+                </div>
+                <div class="alert alert-dismissible alert-success" id="alert" style="<?php if(isset($_SESSION['success'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
+                    <a id="alertMessage"><?php if(isset($_SESSION['success'])) { echo $_SESSION['success']; unset($_SESSION['success']); } ?></a>
+                </div>
                 <div class="form-group">
                     <table class="table table-striped">
                         <tr>
@@ -61,10 +67,10 @@
                             <th>Delete</th>
                         </tr>
                         <?php foreach($messages as $m){
-                            if($m['to'] == $_SESSION['Login']) {?>
+                            if($m['receiver'] == $_SESSION['Login']) {?>
                             <tr>
                                 <td><?php echo $m['date'] ?></td>
-                                <td><?php echo $m['from'] ?></td>
+                                <td><?php echo $m['sender'] ?></td>
                                 <td><?php echo $m['subject'] ?></td>
                                 <td>
                                     <form action="./showDetails.php" method="post">

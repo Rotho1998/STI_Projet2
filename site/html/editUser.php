@@ -24,12 +24,16 @@
                 <a id="alertMessage"></a>
             </div>
             <!-- Formulaire d'édition d'utilisateur' -->
-            <form action="./editUserTreat.php" method="post" onsubmit="return verifyPassword(true)">
+            <form action="./editUserTreat.php" method="post">
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-8">Password (let empty to not edit the password)<span style="color: red">*</span></label>
                     <div class="col-lg-12">
                         <input type="password" class="form-control form-connexion-input" id="inputPassword" name="inputPassword" placeholder="Password">
                     </div>
+                    <small id="passwordHelpBlock" class="col-lg-12 form-text text-muted">
+                        The password must be between 8 and 16 char long, should contain at least one uppercase char,
+                        one lowercase char, one digit and one special char ($^+=!*()@%&.)
+                    </small>
                 </div>
 
                 <div class="form-group">
@@ -65,7 +69,6 @@
 </div>
 <?php include_once('./include/footer.inc.php'); ?>
 </body>
-<script src="./js/checkEntries.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 </html>

@@ -1,7 +1,3 @@
-<html>
-<head></head>
-<body>
-
 <?php
 
 // Appel de la classe de connexion
@@ -35,11 +31,9 @@ if($rightInfos == true) {
     if($isAdmin == true){
         $_SESSION['IsAdmin'] = 1;
     }
+// Prise de temps dans le cas des informations incorrectes
+} else {
+    password_hash($password, PASSWORD_BCRYPT);
 }
 
 header('Location:./index.php');
-
-?>
-
-</body>
-</html>

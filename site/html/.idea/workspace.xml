@@ -5,7 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e415e919-df4f-4628-b726-50096cdb9f05" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/js/checkEntries.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/checkEntries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../databases/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../databases/database.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/addUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addUserTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/addUserTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/answerMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/answerMessage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/dbConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/dbConnection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deleteMessageTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/deleteMessageTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deleteUserTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/deleteUserTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/editPassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editPasswordTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/editPasswordTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/editUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/editUserTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/editUserTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helloworld.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/checkEntries.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/loginTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/loginTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newMessageTreat.php" beforeDir="false" afterPath="$PROJECT_DIR$/newMessageTreat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/users.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +47,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/loginTreat.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/helloworld.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/example.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/phpliteadmin.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/include/navbar.inc.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/answerMessage.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -58,7 +75,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../7 - TPI-nursery - Ajout d'enfant" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../0-Julien/BA5_Labos/STI/Projet2/STI-Messenger" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -88,7 +105,10 @@
       <workItem from="1639063719182" duration="765000" />
       <workItem from="1639132397919" duration="599000" />
       <workItem from="1639159543135" duration="1142000" />
-      <workItem from="1639487563527" duration="13558000" />
+      <workItem from="1639487563527" duration="14196000" />
+      <workItem from="1639565870925" duration="3398000" />
+      <workItem from="1639649904069" duration="11598000" />
+      <workItem from="1639831915554" duration="9034000" />
     </task>
     <servers />
   </component>

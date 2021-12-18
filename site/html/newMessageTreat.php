@@ -1,7 +1,3 @@
-<html>
-<head></head>
-<body>
-
 <?php
 
 // Appel de la classe de connexion
@@ -22,8 +18,3 @@ $message = $_POST['inputMessage'];
 $dbConnection->newMessage($username, $date, $to, $subject, $message);
 
 header('Location:./index.php');
-
-?>
-
-</body>
-</html>

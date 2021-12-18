@@ -18,12 +18,15 @@
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-6">
+            <div class="alert alert-dismissible alert-danger" id="alert" style="<?php if(isset($_SESSION['error'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
+                <a id="alertMessage"><?php if(isset($_SESSION['error'])) { echo $_SESSION['error']; unset($_SESSION['error']); } ?></a>
+            </div>
             <!-- Formulaire de réponse -->
             <form action="./newMessageTreat.php" method="post">
                 <div class="form-group">
                     <label for="inputTo" class="col-lg-8">To<span style="color: red">*</span></label>
                     <div class="col-lg-12">
-                        <input type="text" readonly class="form-control form-connexion-input" id="inputTo" name="inputTo" placeholder="To" value="<?php echo $message['from'] ?>">
+                        <input type="text" readonly class="form-control form-connexion-input" id="inputTo" name="inputTo" placeholder="To" value="<?php echo $message['sender'] ?>">
                     </div>
                 </div>
 

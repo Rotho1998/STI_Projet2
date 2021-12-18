@@ -21,12 +21,12 @@ class dbConnection {
         $this->file_db = null;
     }
 
-    private function getSQLRequest($strSQLRequest){
+    private function getSQLRequest($strSQLRequest, $params = null){
         try {
             $this->openConnection();
 
             $query = $this->file_db->prepare($strSQLRequest);
-            $query->execute();
+            $query->execute($params);
             $response = $query->fetch();
 
             $query->closeCursor();
@@ -38,12 +38,12 @@ class dbConnection {
         }
     }
 
-    private function getSQLRequestAll($strSQLRequest){
+    private function getSQLRequestAll($strSQLRequest, $params = null){
         try {
             $this->openConnection();
 
             $query = $this->file_db->prepare($strSQLRequest);
-            $query->execute();
+            $query->execute($params);
             $response = $query->fetchAll();
 
             $query->closeCursor();
@@ -55,12 +55,12 @@ class dbConnection {
         }
     }
 
-    private function executeSQLRequest($strSQLRequest){
+    private function executeSQLRequest($strSQLRequest, $params = null){
         try {
             $this->openConnection();
 
             $query = $this->file_db->prepare($strSQLRequest);
-            $query->execute();
+            $query->execute($params);
 
             $query->closeCursor();
             $this->closeConnection();
@@ -70,50 +70,90 @@ class dbConnection {
     }
 
     public function getUsers(){
-        return $this->getSQLRequestAll('SELECT * FROM User');
+        $sqlRequest = "SELECT * FROM User";
+        return $this->getSQLRequestAll($sqlRequest);
     }
 
     public function getUser($username){
-        return $this->getSQLRequest("SELECT * FROM User WHERE username = '$username'");
+        $sqlRequest = "SELECT * FROM User WHERE username = ?";
+        $params = [$username];
+        return $this->getSQLRequest($sqlRequest, $params);
     }
 
     public function getUsernames($username){
-        return $this->getSQLRequestAll("SELECT username FROM User WHERE username != '$username'");
+        $sqlRequest = "SELECT username FROM User WHERE username != ?";
+        $params = [$username];
+        return $this->getSQLRequestAll($sqlRequest, $params);
     }
 
     public function addUser($username, $password, $validity, $role){
-        $this->executeSQLRequest("INSERT INTO User (username, password, validity, role) VALUES ('$username', '$password', '$validity', '$role')");
+        $sqlRequest = "SELECT username FROM User WHERE username == ?";
+        $params = [$username];
+        // Test si l'utilisateur existe déjà
+        $user = $this->getSQLRequest($sqlRequest, $params);
+        if($user['username'] == $username){
+            return true;
+        }
+
+        $sqlRequest = "INSERT INTO User (username, password, validity, role) VALUES (?, ?, ?, ?)";
+        $params = [$username, $password, $validity, $role];
+        $this->executeSQLRequest($sqlRequest, $params);
+        return false;
     }
 
     public function deleteUser($username){
-        $this->executeSQLRequest("DELETE FROM User WHERE username = '$username'");
+        $sqlRequest = "DELETE FROM User WHERE username = ?";
+        $params = [$username];
+        $this->executeSQLRequest($sqlRequest, $params);
     }
 
     public function editUser($username, $password, $validity, $role){
-        $this->executeSQLRequest("UPDATE User SET password = '$password', validity = '$validity', role = '$role' WHERE username = '$username'");
+        $sqlRequest = "UPDATE User SET password = ?, validity = ?, role = ? WHERE username = ?";
+        $params = [$password, $validity, $role, $username];
+        $this->executeSQLRequest($sqlRequest, $params);
     }
 
     public function editUserWithoutPassword($username, $validity, $role){
-        $this->executeSQLRequest("UPDATE User SET validity = '$validity', role = '$role' WHERE username = '$username'");
+        $sqlRequest = "UPDATE User SET validity = ?, role = ? WHERE username = ?";
+        $params = [$validity, $role, $username];
+        $this->executeSQLRequest($sqlRequest, $params);
     }
     
     public function editPassword($username, $password){
-       $this->executeSQLRequest("UPDATE User SET password = '$password' WHERE username = '$username'");
+        $sqlRequest = "UPDATE User SET password = ? WHERE username = ?";
+        $params = [$password, $username];
+       $this->executeSQLRequest($sqlRequest, $params);
     }
 
     public function newMessage($username, $date, $to, $subject, $message){
-        $this->executeSQLRequest("INSERT INTO Message ('date', 'from', 'to', 'subject', 'message') VALUES ('$date', '$username', '$to', '$subject', '$message')");
+        $sqlRequest = "INSERT INTO Message (date, sender, receiver, subject, message) VALUES (?, ?, ?, ?, ?)";
+        $params = [$date, $username, $to, $subject, $message];
+        $this->executeSQLRequest($sqlRequest, $params);
     }
 
     public function getMessages(){
-        return $this->getSQLRequestAll("SELECT * FROM Message ORDER BY date DESC");
+        $sqlRequest = "SELECT * FROM Message ORDER BY date DESC";
+        return $this->getSQLRequestAll($sqlRequest);
     }
 
     public function getMessage($id){
-        return $this->getSQLRequest("SELECT * FROM Message WHERE id = '$id'");
+        $sqlRequest = "SELECT * FROM Message WHERE id = ?";
+        $params = [$id];
+        return $this->getSQLRequest($sqlRequest, $params);
     }
 
-    public function deleteMessage($id) {
-        $this->executeSQLRequest("DELETE FROM Message WHERE id = '$id'");
+    public function deleteMessage($id, $username) {
+        $sqlRequest = "SELECT id FROM Message WHERE id = ? AND receiver = ?";
+        $params = [$id, $username];
+        // Test si le message existe et si il appartient à l'utilisateur qui le supprime
+        $message = $this->getSQLRequest($sqlRequest, $params);
+        if($message['id'] == ""){
+            return true;
+        }
+
+        $sqlRequest = "DELETE FROM Message WHERE id = ?";
+        $params = [$id];
+        $this->executeSQLRequest($sqlRequest, $params);
+        return false;
     }
 }

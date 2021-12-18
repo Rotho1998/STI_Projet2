@@ -1,22 +1,27 @@
-<html>
-<head></head>
-<body>
-
 <?php
 
-// Appel de la classe de connexion
-require ('class/dbConnection.php');
+require('class/redirect.php');
 
-$dbConnection = new dbConnection();
+// Définition du nom des inputs reçues
+const IN_USER = 'userToDelete';
 
-// Récupération des identifiants entrés
-$username = $_POST['userToDelete'];
+const VIEW = './users.php';
 
-$dbConnection->deleteUser($username);
+// Vérification de l'entrée
+if(isset($_POST[IN_USER]) && $_POST[IN_USER] != "") {
+    // Appel de la classe de connexion
+    require ('class/dbConnection.php');
 
-header('Location:./users.php');
+    $dbConnection = new dbConnection();
 
-?>
+    // Récupération des identifiants entrés
+    $username = $_POST[IN_USER];
 
-</body>
-</html>
+    $dbConnection->deleteUser($username);
+
+    // Tout a bien fonctionné
+    redirectSuccess("The user has been deleted", VIEW);
+} else {
+    // Redirection vers la page précédente avec un message d'erreur
+    redirectError("An error occured, please try again", VIEW);
+}

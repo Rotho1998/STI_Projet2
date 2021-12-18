@@ -1,7 +1,3 @@
-<html>
-<head></head>
-<body>
-
 <?php
 
 // Appel de la classe de connexion
@@ -24,8 +20,3 @@ if($pwd == ""){
 }
 
 header('Location:./users.php');
-
-?>
-
-</body>
-</html>

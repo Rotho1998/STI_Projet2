@@ -9,16 +9,23 @@
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-6">
-            <div class="alert alert-dismissible alert-danger" id="alert" style="display: none;">
-                <a id="alertMessage"></a>
+            <div class="alert alert-dismissible alert-danger" id="alert" style="<?php if(isset($_SESSION['error'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
+                <a id="alertMessage"><?php if(isset($_SESSION['error'])) { echo $_SESSION['error']; unset($_SESSION['error']); } ?></a>
+            </div>
+            <div class="alert alert-dismissible alert-success" id="alert" style="<?php if(isset($_SESSION['success'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
+                <a id="alertMessage"><?php if(isset($_SESSION['success'])) { echo $_SESSION['success']; unset($_SESSION['success']); } ?></a>
             </div>
             <!-- Formulaire de modification de mot de passe -->
-            <form action="./editPasswordTreat.php" method="post" onsubmit="return verifyPassword()">
+            <form action="./editPasswordTreat.php" method="post">
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-8">New password<span style="color: red">*</span></label>
                     <div class="col-lg-12">
                         <input type="password" class="form-control form-connexion-input" id="inputPassword" name="inputPassword" placeholder="New password">
                     </div>
+                    <small id="passwordHelpBlock" class="col-lg-12 form-text text-muted">
+                        The password must be between 8 and 16 char long, should contain at least one uppercase char,
+                        one lowercase char, one digit and one special char ($^+=!*()@%&.)
+                    </small>
                 </div>
 
                 <div class="form-group">
@@ -39,7 +46,6 @@
 </div>
 <?php include_once('./include/footer.inc.php'); ?>
 </body>
-<script src="./js/checkEntries.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 </html>
