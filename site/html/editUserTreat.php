@@ -22,10 +22,10 @@ if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
     $dbConnection = new dbConnection();
 
     // Récupération des identifiants entrés
-    $username = $_POST[IN_USERNAME];
+    $username = sanitizeInputText($_POST[IN_USERNAME]);
     $pwd = $_POST[IN_PASSWORD];
-    $validity = $_POST[IN_VALIDITY];
-    $role = $_POST[IN_ROLE];
+    $validity = sanitizeInputRoleAndValidity($_POST[IN_VALIDITY]);
+    $role = sanitizeInputRoleAndValidity($_POST[IN_ROLE]);
 
     // Ne pas modifier le mot de passe
     if($pwd == ""){

@@ -23,16 +23,17 @@ if (isset($_POST[IN_TO]) && $_POST[IN_TO] != "" &&
     session_start();
 
     // Récupération des entrées
-    $username = $_SESSION['Login'];
+    $username = sanitizeInputText($_SESSION['Login']);
     date_default_timezone_set('Europe/Paris');
     $date = date('Y-m-d-H-i-s');
-    $to = $_POST[IN_TO];
-    $subject = $_POST[IN_SUBJECT];
-    $message = $_POST[IN_MESSAGE];
+    $to = sanitizeInputText($_POST[IN_TO]);
+    $subject = sanitizeInputText($_POST[IN_SUBJECT]);
+    $message = sanitizeInputText($_POST[IN_MESSAGE]);
 
     // Traitement de l'envoi de message lorsque c'est une réponse à un autre message
     if (isset($_POST[IN_ID_MESSAGE]) && $_POST[IN_ID_MESSAGE] != "") {
-        $msg = $dbConnection->getMessage($_POST[IN_ID_MESSAGE], $_SESSION['Login']);
+        $idMessage = sanitizeInputInt($_POST[IN_ID_MESSAGE]);
+        $msg = $dbConnection->getMessage($idMessage, $username);
         if($msg['id'] != "") {
             // On reprend les données de la BDD, dans le cas où l'utilisateur a modifié les champs
             $subject = "RE: " . $msg['subject'];

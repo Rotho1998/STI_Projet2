@@ -15,7 +15,7 @@ if(isset($_POST[IN_ID]) && $_POST[IN_ID] != "") {
     $dbConnection = new dbConnection();
 
     // Récupération des identifiants entrés
-    $id = $_POST[IN_ID];
+    $id = sanitizeInputInt($_POST[IN_ID]);
 
     session_start();
 

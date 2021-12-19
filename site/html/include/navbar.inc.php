@@ -22,7 +22,7 @@ if(!isset($_SESSION['Login'])){
                     <li class="nav-item">
                         <a class="nav-link" href="./newMessage.php">New message</a>
                     </li>
-                    <?php if(isset($_SESSION['IsAdmin'])){ ?>
+                    <?php if($_SESSION['Role'] == 1){ ?>
                         <li class="nav-item">
                             <a class="nav-link" href="./addUser.php">Add a user</a>
                         </li>

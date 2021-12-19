@@ -23,8 +23,7 @@
 1. Amélioration requêtes avec la BDD
 2. Hashage du mdp + contraintes sur le mdp
 3. Vérifier entrées formulaires
-4. Valider entrées formulaires (sanitizer)
+4. Sanitizer -> XSS
 5. Vérifier autorisations d'accès
 6. Token de suivi entre les pages (CSRF)
 7. Empêcher injection SQL
-8. XSS

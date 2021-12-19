@@ -15,7 +15,7 @@ if(isset($_POST[IN_USER]) && $_POST[IN_USER] != "") {
     $dbConnection = new dbConnection();
 
     // Récupération des identifiants entrés
-    $username = $_POST[IN_USER];
+    $username = sanitizeInputText($_POST[IN_USER]);
 
     $dbConnection->deleteUser($username);
 

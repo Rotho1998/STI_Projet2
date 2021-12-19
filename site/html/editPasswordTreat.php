@@ -32,7 +32,7 @@ if(isset($_POST[IN_PASSWORD]) && $_POST[IN_PASSWORD] != "" &&
 
         $dbConnection = new dbConnection();
         session_start();
-        $dbConnection->editPassword($_SESSION['Login'], $pwd);
+        $dbConnection->editPassword(sanitizeInputText($_SESSION['Login']), $pwd);
 
         // Tout a bien fonctionné
         redirectSuccess("The password has been changed", VIEW_SUCCESS);
