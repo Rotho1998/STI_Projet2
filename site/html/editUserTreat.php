@@ -36,8 +36,8 @@ if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
     // Récupération des identifiants entrés
     $username = sanitizeInputText($_POST[IN_USERNAME]);
     $pwd = $_POST[IN_PASSWORD];
-    $validity = sanitizeInputRoleAndValidity($_POST[IN_VALIDITY]);
-    $role = sanitizeInputRoleAndValidity($_POST[IN_ROLE]);
+    $validity = sanitizeInputBool($_POST[IN_VALIDITY]);
+    $role = sanitizeInputBool($_POST[IN_ROLE]);
 
     // Ne pas modifier le mot de passe
     if($pwd == ""){

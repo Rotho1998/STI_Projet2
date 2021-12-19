@@ -37,8 +37,8 @@ if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
     // Récupération des données entrées
     $username = sanitizeInputText($_POST[IN_USERNAME]);
     $password = $_POST[IN_PASSWORD];
-    $validity = sanitizeInputRoleAndValidity($_POST[IN_VALIDITY]);
-    $role = sanitizeInputRoleAndValidity($_POST[IN_ROLE]);
+    $validity = sanitizeInputBool($_POST[IN_VALIDITY]);
+    $role = sanitizeInputBool($_POST[IN_ROLE]);
 
     // Test si le mot de passe remplit les critères d'acceptation
     if (!verifyPassword($password)) {
