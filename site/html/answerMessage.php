@@ -1,10 +1,15 @@
 <?php
-    // Appel de la classe de connexion
-    require('class/dbConnection.php');
+    if(isset($_POST['idMessage']) && $_POST['idMessage'] != ""){
+        // Appel de la classe de connexion
+        require ('class/dbConnection.php');
 
-    $dbConnection = new dbConnection();
+        $dbConnection = new dbConnection();
 
-    $message = $dbConnection->getMessage($_POST['idMessage']);
+        $message = $dbConnection->getMessage($_POST['idMessage']);
+    } else {
+        require('class/redirect.php');
+        redirectError("Something went wrong, please try again", "./index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,9 +23,16 @@
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-6">
-            <div class="alert alert-dismissible alert-danger" id="alert" style="<?php if(isset($_SESSION['error'])) { ?> display: block; <?php } else { ?> display: none; <?php } ?>">
-                <a id="alertMessage"><?php if(isset($_SESSION['error'])) { echo $_SESSION['error']; unset($_SESSION['error']); } ?></a>
-            </div>
+            <?php if(isset($_SESSION['error'])) { ?>
+                <div class="alert alert-dismissible alert-danger" id="alert">
+                    <a id="alertMessage"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></a>
+                </div>
+            <?php }
+            if(isset($_SESSION['success'])) { ?>
+                <div class="alert alert-dismissible alert-success" id="alert">
+                    <a id="alertMessage"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></a>
+                </div>
+            <?php } ?>
             <!-- Formulaire de réponse -->
             <form action="./newMessageTreat.php" method="post">
                 <div class="form-group">

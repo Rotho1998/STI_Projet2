@@ -1,12 +1,15 @@
 <?php
-    // Appel de la classe de connexion
-    require ('class/dbConnection.php');
+    if(isset($_POST['userToEdit']) && $_POST['userToEdit'] != ""){
+        // Appel de la classe de connexion
+        require ('class/dbConnection.php');
 
-    $dbConnection = new dbConnection();
+        $dbConnection = new dbConnection();
 
-    $username = $_POST['userToEdit'];
-
-    $user = $dbConnection->getUser($username);
+        $user = $dbConnection->getUser($_POST['userToEdit']);
+    } else {
+        require ('class/redirect.php');
+        redirectError("Something went wrong, please try again", "./users.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +23,16 @@
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-6">
-            <div class="alert alert-dismissible alert-danger" id="alert" style="display: none;">
-                <a id="alertMessage"></a>
-            </div>
+            <?php if(isset($_SESSION['error'])) { ?>
+                <div class="alert alert-dismissible alert-danger" id="alert">
+                    <a id="alertMessage"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></a>
+                </div>
+            <?php }
+            if(isset($_SESSION['success'])) { ?>
+                <div class="alert alert-dismissible alert-success" id="alert">
+                    <a id="alertMessage"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></a>
+                </div>
+            <?php } ?>
             <!-- Formulaire d'édition d'utilisateur' -->
             <form action="./editUserTreat.php" method="post">
                 <div class="form-group">

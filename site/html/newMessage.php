@@ -9,6 +9,16 @@
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-6">
+            <?php if(isset($_SESSION['error'])) { ?>
+                <div class="alert alert-dismissible alert-danger" id="alert">
+                    <a id="alertMessage"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></a>
+                </div>
+            <?php }
+            if(isset($_SESSION['success'])) { ?>
+                <div class="alert alert-dismissible alert-success" id="alert">
+                    <a id="alertMessage"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></a>
+                </div>
+            <?php } ?>
             <!-- Formulaire de nouveau message -->
             <form action="./newMessageTreat.php" method="post">
 

@@ -1,10 +1,15 @@
 <?php
-// Appel de la classe de connexion
-require('class/dbConnection.php');
+    if(isset($_POST['idMessage']) && $_POST['idMessage'] != ""){
+        // Appel de la classe de connexion
+        require ('class/dbConnection.php');
 
-$dbConnection = new dbConnection();
+        $dbConnection = new dbConnection();
 
-$message = $dbConnection->getMessage($_POST['idMessage']);
+        $message = $dbConnection->getMessage($_POST['idMessage']);
+    } else {
+        require ('class/redirect.php');
+        redirectError("Something went wrong, please try again", "./index.php");
+    }
 ?>
 
 <!DOCTYPE html>
