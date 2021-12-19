@@ -1,3 +1,6 @@
+<?php
+    require('security.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php include_once('./include/header.inc.php'); ?>
@@ -85,7 +88,7 @@
                             <tr>
                                 <td><?php echo $m['date'] ?></td>
                                 <td><?php echo $m['sender'] ?></td>
-                                <td><?php echo $m['subject'] ?></td>
+                                <td><?php echo sanitizeOutput($m['subject']) ?></td>
                                 <td>
                                     <form action="./showDetails.php" method="post">
                                         <input type="hidden" id="idMessage" name="idMessage" value="<?php echo $m['id'] ?>"/>

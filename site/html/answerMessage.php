@@ -1,5 +1,6 @@
 <?php
     require('redirect.php');
+    require('security.php');
     if(isset($_POST['idMessage']) && $_POST['idMessage'] != ""){
         // Appel de la classe de connexion
         require ('class/dbConnection.php');
@@ -50,7 +51,7 @@
                 <div class="form-group">
                     <label for="inputSubject" class="col-lg-8">Subject<span style="color: red">*</span></label>
                     <div class="col-lg-12">
-                        <input type="text" readonly class="form-control form-connexion-input" id="inputSubject" name="inputSubject" placeholder="Subject" value="RE: <?php echo $message['subject'] ?>">
+                        <input type="text" readonly class="form-control form-connexion-input" id="inputSubject" name="inputSubject" placeholder="Subject" value="RE: <?php echo sanitizeOutput($message['subject']) ?>">
                     </div>
                 </div>
 

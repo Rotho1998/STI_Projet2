@@ -22,7 +22,7 @@ function sanitizeInputRoleAndValidity($input) {
 function sanitizeOutput($output) {
     $result = str_replace('<blockquote>', "[START]", $output);
     $result = str_replace('</blockquote>', "[END]", $result);
-    $result = htmlspecialchars($result, ENT_QUOTES, 'UTF-8');
+    $result = htmlspecialchars_decode($result, ENT_QUOTES);
     $result = str_replace("[START]", '<blockquote>', $result);
     return str_replace("[END]", '</blockquote>', $result);
 }

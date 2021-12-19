@@ -1,6 +1,7 @@
 <?php
 
 require ('redirect.php');
+require ('security.php');
 
 // Définition du nom des inputs reçues
 const IN_TO = 'inputTo';
