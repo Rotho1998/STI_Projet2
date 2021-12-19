@@ -16,7 +16,7 @@ const VIEW = './index.php';
 
 // Test du token pour protéger du CSRF
 $hmac = hash_hmac('sha256', 'deleteMessage', $_SESSION['Token']);
-if (!isset($_POST['token']) || !(hash_equals($hmac, $_POST['token']))) {
+if (!isset($_POST['token']) || $hmac != $_POST['token']) {
     redirectError("Invalid token", VIEW);
 }
 

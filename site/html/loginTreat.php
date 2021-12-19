@@ -14,12 +14,6 @@ const IN_PASSWORD = 'inputPassword';
 
 const VIEW = './index.php';
 
-// Test du token pour protéger du CSRF
-$hmac = hash_hmac('sha256', 'login', $_SESSION['Token']);
-if (!isset($_POST['token']) || !(hash_equals($hmac, $_POST['token']))) {
-    redirectError("Invalid token", VIEW);
-}
-
 // Vérification de l'entrée
 if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
     isset($_POST[IN_PASSWORD]) && $_POST[IN_PASSWORD] != "") {
@@ -43,12 +37,8 @@ if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
         session_start();
         $_SESSION['Login'] = $username;
         $_SESSION['Role'] = $user['role'];
-        try {
-            // Génération d'un token pour protéger du CSRF
-            $_SESSION['Token'] = bin2hex(random_bytes(32));
-        } catch (Exception $e) {
-            echo $e;
-        }
+        // Génération d'un token pour protéger du CSRF
+        $_SESSION['Token'] = bin2hex(openssl_random_pseudo_bytes(32));
 
         // Tout a bien fonctionné
         redirectSuccess("You are connected", VIEW);

@@ -40,8 +40,6 @@
                         </div>
                     </div>
 
-                    <input type="hidden" id="token" name="token" value="<?php echo hash_hmac('sha256', 'login', $_SESSION['Token']) ?>"/>
-
                     <div class="form-group pull-right">
                         <div class="col-lg-8">
                             <button type="submit" class="btn btn-outline-primary">Login</button>
