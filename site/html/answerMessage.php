@@ -61,6 +61,8 @@
                     </div>
                 </div>
 
+                <input type="hidden" id="idMessage" name="idMessage" value="<?php echo $message['id'] ?>"/>
+
                 <div class="form-group pull-right">
                     <div class="col-lg-8">
                         <button type="submit" class="btn btn-outline-primary">Send</button>

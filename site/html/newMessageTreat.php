@@ -6,6 +6,7 @@ require ('redirect.php');
 const IN_TO = 'inputTo';
 const IN_SUBJECT = 'inputSubject';
 const IN_MESSAGE = 'inputMessage';
+const IN_ID_MESSAGE = 'idMessage';
 
 const VIEW_ERROR = './newMessage.php';
 const VIEW_SUCCESS = './index.php';
@@ -29,12 +30,24 @@ if (isset($_POST[IN_TO]) && $_POST[IN_TO] != "" &&
     $subject = $_POST[IN_SUBJECT];
     $message = $_POST[IN_MESSAGE];
 
+    // Traitement de l'envoi de message lorsque c'est une réponse à un autre message
+    if (isset($_POST[IN_ID_MESSAGE]) && $_POST[IN_ID_MESSAGE] != "") {
+        $msg = $dbConnection->getMessage($_POST[IN_ID_MESSAGE], $_SESSION['Login']);
+        if($msg['id'] != "") {
+            // On reprend les données de la BDD, dans le cas où l'utilisateur a modifié les champs
+            $subject = "RE: " . $msg['subject'];
+        } else {
+            // Redirection vers la page précédente avec un message d'erreur
+            redirectError("An error occured, please try again", VIEW_ERROR);
+        }
+    }
+
     $invalidUsername = $dbConnection->newMessage($username, $date, $to, $subject, $message);
 
     // Vérification que l'utilisateur existe et que ce ne soit pas le même que celui qui envoie
     if ($invalidUsername || $username == $to) {
         // Redirection vers la page précédente avec un message d'erreur
-        redirectError("An error occured in the form, please try again", VIEW_ERROR);
+        redirectError("An error occured, please try again", VIEW_ERROR);
     }
 
     // Tout a bien fonctionné
