@@ -14,6 +14,12 @@ const IN_USER = 'userToDelete';
 
 const VIEW = './users.php';
 
+// Test du token pour protéger du CSRF
+$hmac = hash_hmac('sha256', 'deleteUser', $_SESSION['Token']);
+if (!isset($_POST['token']) || !(hash_equals($hmac, $_POST['token']))) {
+    redirectError("Invalid token", VIEW);
+}
+
 // Vérification de l'entrée
 if(isset($_POST[IN_USER]) && $_POST[IN_USER] != "") {
     // Appel de la classe de connexion

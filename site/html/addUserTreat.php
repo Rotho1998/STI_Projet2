@@ -17,6 +17,12 @@ const IN_ROLE = 'inputRole';
 const VIEW_ERROR = './addUser.php';
 const VIEW_SUCCESS = './users.php';
 
+// Test du token pour protéger du CSRF
+$hmac = hash_hmac('sha256', 'addUser', $_SESSION['Token']);
+if (!isset($_POST['token']) || !(hash_equals($hmac, $_POST['token']))) {
+    redirectError("Invalid token", VIEW_ERROR);
+}
+
 // Vérification des entrées
 if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
     isset($_POST[IN_PASSWORD]) && $_POST[IN_PASSWORD] != "" &&

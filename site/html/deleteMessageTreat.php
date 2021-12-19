@@ -14,6 +14,12 @@ const IN_ID = 'idMessage';
 
 const VIEW = './index.php';
 
+// Test du token pour protéger du CSRF
+$hmac = hash_hmac('sha256', 'deleteMessage', $_SESSION['Token']);
+if (!isset($_POST['token']) || !(hash_equals($hmac, $_POST['token']))) {
+    redirectError("Invalid token", VIEW);
+}
+
 // Vérification de l'entrée
 if(isset($_POST[IN_ID]) && $_POST[IN_ID] != "") {
     // Appel de la classe de connexion

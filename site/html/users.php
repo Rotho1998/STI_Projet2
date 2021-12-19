@@ -63,6 +63,7 @@
                             <td>
                                 <form action="./deleteUserTreat.php" method="post">
                                     <input type="hidden" id="userToDelete" name="userToDelete" value="<?php echo $u['username'] ?>"/>
+                                    <input type="hidden" id="token" name="token" value="<?php echo hash_hmac('sha256', 'deleteUser', $_SESSION['Token']) ?>"/>
                                     <button type="submit" class="btn btn-outline-danger btn-xs">Delete</button>
                                 </form>
                             </td>

@@ -40,6 +40,8 @@
                         </div>
                     </div>
 
+                    <input type="hidden" id="token" name="token" value="<?php echo hash_hmac('sha256', 'login', $_SESSION['Token']) ?>"/>
+
                     <div class="form-group pull-right">
                         <div class="col-lg-8">
                             <button type="submit" class="btn btn-outline-primary">Login</button>
@@ -104,6 +106,7 @@
                                 <td>
                                     <form action="./deleteMessageTreat.php" method="post">
                                         <input type="hidden" id="idMessage" name="idMessage" value="<?php echo $m['id'] ?>"/>
+                                        <input type="hidden" id="token" name="token" value="<?php echo hash_hmac('sha256', 'deleteMessage', $_SESSION['Token']) ?>"/>
                                         <button type="submit" class="btn btn-outline-danger btn-xs">Delete</button>
                                     </form>
                                 </td>

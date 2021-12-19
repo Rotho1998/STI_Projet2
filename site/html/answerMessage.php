@@ -70,6 +70,8 @@
 
                 <input type="hidden" id="idMessage" name="idMessage" value="<?php echo $message['id'] ?>"/>
 
+                <input type="hidden" id="token" name="token" value="<?php echo hash_hmac('sha256', 'actionMessage', $_SESSION['Token']) ?>"/>
+
                 <div class="form-group pull-right">
                     <div class="col-lg-8">
                         <button type="submit" class="btn btn-outline-primary">Send</button>

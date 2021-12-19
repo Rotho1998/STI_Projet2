@@ -16,6 +16,12 @@ const IN_PASSWORD_REPEAT = 'inputPasswordRepeat';
 const VIEW_ERROR = './editPassword.php';
 const VIEW_SUCCESS = './index.php';
 
+// Test du token pour protéger du CSRF
+$hmac = hash_hmac('sha256', 'editPassword', $_SESSION['Token']);
+if (!isset($_POST['token']) || !(hash_equals($hmac, $_POST['token']))) {
+    redirectError("Invalid token", VIEW_ERROR);
+}
+
 // Vérification de l'entrée
 if(isset($_POST[IN_PASSWORD]) && $_POST[IN_PASSWORD] != "" &&
     isset($_POST[IN_PASSWORD_REPEAT]) && $_POST[IN_PASSWORD_REPEAT] != "") {

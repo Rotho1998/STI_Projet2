@@ -8,7 +8,6 @@ if (!authentication()) {
     redirectError("You cannot access this ressource", "./index.php");
 }
 
-
 // Définition du nom des inputs reçues
 const IN_TO = 'inputTo';
 const IN_SUBJECT = 'inputSubject';
@@ -18,6 +17,13 @@ const IN_ID_MESSAGE = 'idMessage';
 const VIEW_ERROR = './newMessage.php';
 const VIEW_SUCCESS = './index.php';
 
+// Test du token pour protéger du CSRF
+$hmac = hash_hmac('sha256', 'actionMessage', $_SESSION['Token']);
+if (!isset($_POST['token']) || !(hash_equals($hmac, $_POST['token']))) {
+    redirectError("Invalid token", VIEW_ERROR);
+}
+
+// Vérification des entrées
 if (isset($_POST[IN_TO]) && $_POST[IN_TO] != "" &&
     isset($_POST[IN_SUBJECT]) && $_POST[IN_SUBJECT] != "" &&
     isset($_POST[IN_MESSAGE]) && $_POST[IN_MESSAGE] != "") {
