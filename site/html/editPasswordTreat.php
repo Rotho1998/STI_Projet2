@@ -1,7 +1,7 @@
 <?php
 
-require('class/security.php');
-require('class/redirect.php');
+require('security.php');
+require('redirect.php');
 
 // Définition du nom des inputs reçues
 const IN_PASSWORD = 'inputPassword';

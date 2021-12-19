@@ -136,9 +136,10 @@ class dbConnection {
         return $this->getSQLRequestAll($sqlRequest);
     }
 
-    public function getMessage($id){
-        $sqlRequest = "SELECT * FROM Message WHERE id = ?";
-        $params = [$id];
+    public function getMessage($id, $username){
+        // Vérification que le message soit bien celui reçu par l'utilisateur
+        $sqlRequest = "SELECT * FROM Message WHERE id = ? AND receiver = ?";
+        $params = [$id, $username];
         return $this->getSQLRequest($sqlRequest, $params);
     }
 

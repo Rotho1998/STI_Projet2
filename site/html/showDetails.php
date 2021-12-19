@@ -1,13 +1,18 @@
 <?php
+    require('redirect.php');
     if(isset($_POST['idMessage']) && $_POST['idMessage'] != ""){
         // Appel de la classe de connexion
         require ('class/dbConnection.php');
 
+        session_start();
         $dbConnection = new dbConnection();
 
-        $message = $dbConnection->getMessage($_POST['idMessage']);
+        $message = $dbConnection->getMessage($_POST['idMessage'], $_SESSION['Login']);
+
+        if($message['id'] == ""){
+            redirectError("You don't have access to this message", "./index.php");
+        }
     } else {
-        require ('class/redirect.php');
         redirectError("Something went wrong, please try again", "./index.php");
     }
 ?>
@@ -35,7 +40,7 @@
                 <div class="form-group">
                     <label for="inputFrom" class="col-lg-8">From</label>
                     <div class="col-lg-12">
-                        <input type="text" readonly class="form-control form-connexion-input" id="inputFrom" name="inputFrom" placeholder="To" value="<?php echo $message['from'] ?>">
+                        <input type="text" readonly class="form-control form-connexion-input" id="inputFrom" name="inputFrom" placeholder="To" value="<?php echo $message['sender'] ?>">
                     </div>
                 </div>
 

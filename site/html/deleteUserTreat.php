@@ -1,6 +1,6 @@
 <?php
 
-require('class/redirect.php');
+require('redirect.php');
 
 // Définition du nom des inputs reçues
 const IN_USER = 'userToDelete';

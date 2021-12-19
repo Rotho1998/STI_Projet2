@@ -7,7 +7,7 @@
 
         $user = $dbConnection->getUser($_POST['userToEdit']);
     } else {
-        require ('class/redirect.php');
+        require('redirect.php');
         redirectError("Something went wrong, please try again", "./users.php");
     }
 ?>

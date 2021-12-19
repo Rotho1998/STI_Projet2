@@ -1,13 +1,18 @@
 <?php
+    require('redirect.php');
     if(isset($_POST['idMessage']) && $_POST['idMessage'] != ""){
         // Appel de la classe de connexion
         require ('class/dbConnection.php');
 
+        session_start();
         $dbConnection = new dbConnection();
 
-        $message = $dbConnection->getMessage($_POST['idMessage']);
+        $message = $dbConnection->getMessage($_POST['idMessage'], $_SESSION['Login']);
+
+        if($message['id'] == ""){
+            redirectError("You don't have access to this message", "./index.php");
+        }
     } else {
-        require('class/redirect.php');
         redirectError("Something went wrong, please try again", "./index.php");
     }
 ?>
