@@ -126,9 +126,16 @@ class dbConnection {
     }
 
     public function newMessage($username, $date, $to, $subject, $message){
+        // Vérification que l'utilisateur existe
+        $user = $this->getUser($to);
+        if ($user['username'] == "") {
+            return true;
+        }
+
         $sqlRequest = "INSERT INTO Message (date, sender, receiver, subject, message) VALUES (?, ?, ?, ?, ?)";
         $params = [$date, $username, $to, $subject, $message];
         $this->executeSQLRequest($sqlRequest, $params);
+        return false;
     }
 
     public function getMessages(){
