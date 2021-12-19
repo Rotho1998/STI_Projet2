@@ -1,4 +1,12 @@
 <?php
+
+    require('redirect.php');
+    require('security.php');
+    // Test si l'utilisateur est admin
+    if (!authentication(true)) {
+        redirectError("You cannot access this ressource", "./index.php");
+    }
+
     if(isset($_POST['userToEdit']) && $_POST['userToEdit'] != ""){
         // Appel de la classe de connexion
         require ('class/dbConnection.php');
@@ -7,7 +15,6 @@
 
         $user = $dbConnection->getUser($_POST['userToEdit']);
     } else {
-        require('redirect.php');
         redirectError("Something went wrong, please try again", "./users.php");
     }
 ?>

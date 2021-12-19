@@ -1,4 +1,14 @@
 <?php
+
+
+    require('redirect.php');
+    require('security.php');
+
+    // Test si l'utilisateur est admin
+    if (!authentication(true)) {
+        redirectError("You cannot access this ressource", "./index.php");
+    }
+
     // Appel de la classe de connexion
     require ('class/dbConnection.php');
 

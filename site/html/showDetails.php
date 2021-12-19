@@ -1,6 +1,12 @@
 <?php
     require('redirect.php');
     require('security.php');
+
+    // Test si l'utilisateur est connecté
+    if (!authentication()) {
+        redirectError("You cannot access this ressource", "./index.php");
+    }
+
     if(isset($_POST['idMessage']) && $_POST['idMessage'] != ""){
         // Appel de la classe de connexion
         require ('class/dbConnection.php');

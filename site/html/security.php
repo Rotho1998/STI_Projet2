@@ -26,3 +26,16 @@ function sanitizeOutput($output) {
     $result = str_replace("[START]", '<blockquote>', $result);
     return str_replace("[END]", '</blockquote>', $result);
 }
+
+function authentication($admin = false) {
+    session_start();
+    if(isset($_SESSION['Login'])){
+        if($admin && $_SESSION['Role'] == 1){
+            return true;
+        } elseif ($admin && $_SESSION['Role'] == 0) {
+            return false;
+        }
+        return true;
+    }
+    return false;
+}

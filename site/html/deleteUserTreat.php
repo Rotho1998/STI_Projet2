@@ -3,6 +3,12 @@
 require('redirect.php');
 require('security.php');
 
+// Test si l'utilisateur est admin
+if (!authentication(true)) {
+    redirectError("You cannot access this ressource", "./index.php");
+}
+
+
 // Définition du nom des inputs reçues
 const IN_USER = 'userToDelete';
 

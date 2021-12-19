@@ -1,3 +1,11 @@
+<?php
+    require ('redirect.php');
+    require ('security.php');
+    // Test si l'utilisateur est admin
+    if(!authentication(true)) {
+        redirectError("You cannot access this ressource", "./index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php include_once('./include/header.inc.php'); ?>
