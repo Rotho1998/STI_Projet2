@@ -45,7 +45,7 @@ if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
     // Prise de temps dans le cas des informations incorrectes, puis annonce login incorrect
     } else {
         password_hash($password, PASSWORD_BCRYPT);
-        redirectError("The credentials are false", VIEW);
+        redirectError("The credentials are false / the user is not active", VIEW);
     }
 } else {
     redirectError("An error occured, please try again", VIEW);

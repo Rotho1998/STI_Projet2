@@ -94,7 +94,7 @@ class dbConnection {
      * Méthode permettant d'obtenir tous les utilisateurs
      */
     public function getUsers(){
-        $sqlRequest = "SELECT * FROM User";
+        $sqlRequest = "SELECT * FROM User ORDER BY username";
         return $this->getSQLRequestAll($sqlRequest);
     }
 
