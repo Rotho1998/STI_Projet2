@@ -1,4 +1,4 @@
-# STI - Projet 2
+# STI - Projet 2 - Manuel
 
 > Auteurs : Robin Gaudin - Lev Pozniakoff
 >
