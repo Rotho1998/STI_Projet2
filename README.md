@@ -90,7 +90,7 @@ Vous pouvez directement changer de mot de passe:
 
 ![](images/edit.png)
 
-Il faut simplement entrer un nouveau mot de passe et le répeter une fois (le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre, un caractère spécial et doit faire entre 8 et 16 caractères):
+Il faut indiquer son ancien mot de passe, entrer un nouveau mot de passe et le répeter une fois (le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre, un caractère spécial et doit faire entre 8 et 16 caractères):
 
 ![](images/password.png)
 

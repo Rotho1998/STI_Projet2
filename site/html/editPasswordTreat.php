@@ -10,6 +10,7 @@ if (!authentication()) {
 
 
 // Définition du nom des inputs reçues
+const IN_PASSWORD_OLD = 'inputPasswordOld';
 const IN_PASSWORD = 'inputPassword';
 const IN_PASSWORD_REPEAT = 'inputPasswordRepeat';
 
@@ -23,12 +24,27 @@ if (!isset($_POST['token']) || $hmac != $_POST['token']) {
 }
 
 // Vérification de l'entrée
-if(isset($_POST[IN_PASSWORD]) && $_POST[IN_PASSWORD] != "" &&
+if (isset($_POST[IN_PASSWORD_OLD]) && $_POST[IN_PASSWORD_OLD] != "" &&
+    isset($_POST[IN_PASSWORD]) && $_POST[IN_PASSWORD] != "" &&
     isset($_POST[IN_PASSWORD_REPEAT]) && $_POST[IN_PASSWORD_REPEAT] != "") {
 
     // Récupération des identifiants entrés
-    $pwd = $_POST['inputPassword'];
-    $pwdRepeat = $_POST['inputPasswordRepeat'];
+    $oldPwd = $_POST[IN_PASSWORD_OLD];
+    $pwd = $_POST[IN_PASSWORD];
+    $pwdRepeat = $_POST[IN_PASSWORD_REPEAT];
+
+    // Appel de la classe de connexion
+    require ('class/dbConnection.php');
+    $dbConnection = new dbConnection();
+    session_start();
+
+    $username = $_SESSION['Login'];
+    // Récupération des utilisateurs dans la bdd
+    $user = $dbConnection->getUser($username);
+    if (!password_verify($oldPwd, $user['password'])){
+        // Redirection vers la page précédente avec un message d'erreur
+        redirectError("The old password is false", VIEW_ERROR);
+    }
 
     // Test si le mot de passe remplit les critères d'acceptation
     if (!verifyPassword($pwd)) {
@@ -37,13 +53,8 @@ if(isset($_POST[IN_PASSWORD]) && $_POST[IN_PASSWORD] != "" &&
     }
 
     if($pwd == $pwdRepeat){
-        // Appel de la classe de connexion
-        require ('class/dbConnection.php');
-
         $pwd = password_hash($pwd, PASSWORD_BCRYPT);
 
-        $dbConnection = new dbConnection();
-        session_start();
         $dbConnection->editPassword(sanitizeInputText($_SESSION['Login']), $pwd);
 
         // Tout a bien fonctionné

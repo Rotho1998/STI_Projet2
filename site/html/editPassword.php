@@ -30,6 +30,13 @@
             <!-- Formulaire de modification de mot de passe -->
             <form action="./editPasswordTreat.php" method="post">
                 <div class="form-group">
+                    <label for="inputPasswordOld" class="col-lg-8">Old password<span style="color: red">*</span></label>
+                    <div class="col-lg-12">
+                        <input type="password" class="form-control form-connexion-input" id="inputPasswordOld" name="inputPasswordOld" placeholder="Old password">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="inputPassword" class="col-lg-8">New password<span style="color: red">*</span></label>
                     <div class="col-lg-12">
                         <input type="password" class="form-control form-connexion-input" id="inputPassword" name="inputPassword" placeholder="New password">
