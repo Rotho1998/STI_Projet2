@@ -74,6 +74,23 @@ Dans le cadre de ce projet, uniquement l'application Web est prise en compte pou
 
 ## Identification des sources de menaces
 
+- Hackers, script-kiddies
+  - Motivation : amusement, gloire
+  - Cible : application web, serveur, base de données
+  - Potentialité : haute
+- Cybercrime (spam, maliciels)
+  - Motivation : financier (revente d'informations)
+  - Cible : voler les identifiants des collaborateurs, récupération d'informations dans les messages
+  - Potentialité : moyenne
+- Utilisateurs malins
+  - Motivation : accès aux informations et messages des autres collaborateurs, accès aux fonctionnalités administrateur, amusement
+  - Cible : accès non autorisé à des messages, usurpation d'identité, élévation de privilèges
+  - Potentialité : moyenne
+- Concurrent
+  - Motivation : obtenir des informations dans les messages concernant l'entreprise
+  - Cible : confidentialité, accès non autorisé à des messages
+  - Potentialité : moyenne
+
 ## Identification des scénarios d'attaques
 
 ## Identification des contremesures
