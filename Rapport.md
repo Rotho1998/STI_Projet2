@@ -98,11 +98,33 @@ Dans le cadre de ce projet, uniquement l'application Web est prise en compte pou
 Obtention d'informations contenues dans la base de données (injection SQL)
 
 - Impact sur l'entreprise : haut
+
 - Source de la menace : hacker, cybercrime, concurrent
+
 - Motivation : amusement, financier, vol d'informations
+
 - Elément cible : base de données
+
 - Scénario d'attaque :
+
+  - Dans un formulaire (celui de connexion), tenter d'insérer comme nom d'utilisateur un simple guillemet et observer le résultat
+
+  - Si un simple message d'erreur concernant le login est affiché, le champ n'est certainement pas vulnérable. Mais si un exception est levée par le serveur, alors ce champ est peut-être vulnérable
+
+  - Dans le cas favorable, on va donc utiliser un outil automatique d'insertion SQL pour tenter de récupérer des informations de la base de données, par exemple sqlmap
+
+  - Un exemple de commande serait :
+
+    ```bash
+    sqlmap --url=http://localhost:8080/index.php --data="username=test&password=test" -p "username" --technique=T --risk=3 --level=5 --dump-all
+    ```
+
+    Attributs : url (url vers la page de login), data (paramètres transmis au serveur à travers la requête), p (paramètre à tester), technique=T (time-based blind attack), risk + level (le plus haut niveau de test de l'attaque), dump-all (récupération de la structure et les données de la base de données)
+
 -  Contremesures :
+
+  - Préparation des requêtes, pour tous les paramètres transmis à la base de données
+  - Hachage des mots de passes, afin qu'en cas de récupération des informations, ils ne soient pas utilisables
 
 ### Scénario d'attaque 2 :
 
@@ -113,7 +135,12 @@ Suppression d'un compte (CSRF)
 - Motivation : amusement, déranger l'entreprise
 - Elément cible : compte d'un collaborateur
 - Scénario d'attaque :
+  - Il faut en premier lieu trouver l'endpoint qui permet d'envoyer la requête de suppression d'un utilisateur. Pour ce faire, on va utiliser un scanner de contenu (dirb par exemple)
+  - Trouver le paramètre nécessaire pour supprimer un utilisateur. Si on a accès à la messagerie, on peut essayer d'inspecter le code html afin de trouver des informations
+  - Préparer le payload en spécifiant l'endpoint et le(s) paramètre(s) nécessaires pour supprimer l'utilisateur
+  - Transmettre le payload à une victime afin qu'il clique sur le lien qui va exécuter la requête vers le serveur
 -  Contremesures :
+  - Ajout de token anti-CSRF dans les formulaires
 
 ### Scénario d'attaque 3 :
 
@@ -124,7 +151,9 @@ Récupération d'un compte administrateur (XSS)
 - Motivation : amusement, financier, accès à la gestion des administrateurs
 - Elément cible : compte d'un collaborateur administrateur
 - Scénario d'attaque :
+  - 
 -  Contremesures :
+  - 
 
 ### Scénario d'attaque 4 :
 
@@ -135,7 +164,9 @@ Usurpation d'identité
 - Motivation : amusement, accès aux informations
 - Elément cible : base de données, social engineering
 - Scénario d'attaque :
+  - 
 -  Contremesures :
+  - 
 
 ### Scénario d'attaque 5 :
 
@@ -146,7 +177,9 @@ Défacement du site (XSS)
 - Motivation : amusement, accès aux informations
 - Elément cible : application Web
 - Scénario d'attaque :
+  - 
 -  Contremesures :
+  - 
 
 ### STRIDE
 
