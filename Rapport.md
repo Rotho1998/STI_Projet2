@@ -87,11 +87,90 @@ Dans le cadre de ce projet, uniquement l'application Web est prise en compte pou
   - Cible : accès non autorisé à des messages, usurpation d'identité, élévation de privilèges
   - Potentialité : moyenne
 - Concurrent
-  - Motivation : obtenir des informations dans les messages concernant l'entreprise
+  - Motivation : obtenir des informations dans les messages concernant l'entreprise, déranger l'entreprise
   - Cible : confidentialité, accès non autorisé à des messages
   - Potentialité : moyenne
 
 ## Identification des scénarios d'attaques
+
+### Scénario d'attaque 1 :
+
+Obtention d'informations contenues dans la base de données (injection SQL)
+
+- Impact sur l'entreprise : haut
+- Source de la menace : hacker, cybercrime, concurrent
+- Motivation : amusement, financier, vol d'informations
+- Elément cible : base de données
+- Scénario d'attaque :
+-  Contremesures :
+
+### Scénario d'attaque 2 :
+
+Suppression d'un compte (CSRF)
+
+- Impact sur l'entreprise : moyen
+- Source de la menace : hacker, script-kiddies
+- Motivation : amusement, déranger l'entreprise
+- Elément cible : compte d'un collaborateur
+- Scénario d'attaque :
+-  Contremesures :
+
+### Scénario d'attaque 3 :
+
+Récupération d'un compte administrateur (XSS)
+
+- Impact sur l'entreprise : moyen
+- Source de la menace : hacker, script-kiddies, cybercrime
+- Motivation : amusement, financier, accès à la gestion des administrateurs
+- Elément cible : compte d'un collaborateur administrateur
+- Scénario d'attaque :
+-  Contremesures :
+
+### Scénario d'attaque 4 :
+
+Usurpation d'identité
+
+- Impact sur l'entreprise : moyen
+- Source de la menace : hacker, script-kiddies, cybercrime, utilisateurs malins, concurrent
+- Motivation : amusement, accès aux informations
+- Elément cible : base de données, social engineering
+- Scénario d'attaque :
+-  Contremesures :
+
+### Scénario d'attaque 5 :
+
+Défacement du site (XSS)
+
+- Impact sur l'entreprise : faible
+- Source de la menace : hacker, script-kiddies, concurrent
+- Motivation : amusement, accès aux informations
+- Elément cible : application Web
+- Scénario d'attaque :
+-  Contremesures :
+
+### STRIDE
+
+- Spoofing :
+  - Récupération d'un compte administrateur (Scénario 3)
+- Tampering :
+  - Obtention d'informations contenues dans la base de données (Scénario 1)
+- Repudiation :
+  - Usurpation d'identité (Scénario 4)
+- Information disclosure :
+  - Non pris en compte pour cette analyse
+- Denial of service :
+  - Défacement du site (Scénario 5)
+- Elevation of privileges :
+  - Suppression d'un compte (Scénario 2)
+  - Récupération d'un compte administrateur (Scénario 3)
+
+|                          | S    | T    | R    | I    | D    | E    |
+| ------------------------ | ---- | ---- | ---- | ---- | ---- | ---- |
+| Collaborateur            | X    |      | X    | -    |      | X    |
+| Administrateur           | X    |      | X    | -    |      | X    |
+| Base de données          | X    | X    | X    | -    | X    | X    |
+| Application Web          |      | X    | X    | -    | X    |      |
+| Intéractions (data flow) |      | X    |      | -    |      |      |
 
 ## Identification des contremesures
 
