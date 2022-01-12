@@ -46,6 +46,12 @@ if (isset($_POST[IN_USERNAME]) && $_POST[IN_USERNAME] != "" &&
         redirectError("The password is not strong enough", VIEW_ERROR);
     }
 
+    // Test si le nom d'utilisateur remplit les critères d'acceptation
+    if (!verifyUsername($username)) {
+        // Redirection vers la page précédente avec un message d'erreur
+        redirectError("The username is not valid", VIEW_ERROR);
+    }
+
     $password = password_hash($password, PASSWORD_BCRYPT);
 
     // Ajout à la base de données

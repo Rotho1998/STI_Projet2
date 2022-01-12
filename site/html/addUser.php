@@ -34,6 +34,9 @@
                     <div class="col-lg-12">
                         <input type="text" class="form-control form-connexion-input" id="inputUsername" name="inputUsername" placeholder="Username">
                     </div>
+                    <small id="usernameHelpBlock" class="col-lg-12 form-text text-muted">
+                        The username can contain only alphanumeric char and (._-)
+                    </small>
                 </div>
 
                 <div class="form-group">

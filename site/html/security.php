@@ -2,6 +2,7 @@
 
 // Définition des constantes
 const REGEX_PASSWORD = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.])[A-Za-z\d#$^+=!*()@%&.]{8,16}$/';
+const REGEX_USERNAME = '/^[a-zA-Z0-9]+([._-]?[a-zA-Z0-9]+)*$/';
 
 /**
  * Méthode de vérification du mot de passe
@@ -10,6 +11,15 @@ const REGEX_PASSWORD = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.])[A-
  */
 function verifyPassword($password) {
     return preg_match(REGEX_PASSWORD, $password);
+}
+
+/**
+ * Méthode de vérification du nom d'utilisateur
+ * @param $username -> nom d'utilisateur à vérifier
+ * @return false|int -> si le nom d'utilisateur est valide
+ */
+function verifyUsername($username) {
+    return preg_match(REGEX_USERNAME, $username);
 }
 
 /**
